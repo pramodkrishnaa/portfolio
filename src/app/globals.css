@@ -4,18 +4,18 @@
    DESIGN TOKENS  — one dark theme, locked. Accent swaps per world.
    ========================================================================== */
 :root {
-  --bg: #0a0b0d;          /* off-black, slightly cool  */
-  --bg-elev: #111318;     /* elevated surface          */
-  --bg-raise: #171a21;    /* hover / raised            */
-  --line: #23262e;        /* hairline border           */
-  --line-strong: #30343d;
-  --fg: #ededf0;          /* primary text              */
-  --muted: #9aa0ab;       /* secondary text            */
-  --dim: #5b616c;         /* tertiary / labels         */
+  --bg: #0a0a0c;          /* cool near-black           */
+  --bg-elev: #131316;     /* elevated surface          */
+  --bg-raise: #1c1c20;    /* hover / raised            */
+  --line: #27272c;        /* hairline border           */
+  --line-strong: #3a3a41;
+  --fg: #edeae3;          /* primary text, warm off-white */
+  --muted: #9a9aa1;       /* secondary text, neutral grey */
+  --dim: #5c5c63;         /* tertiary / labels         */
 
-  /* Tech world accent — restrained electric blue, no glows */
-  --accent: #5b8dff;
-  --accent-ink: #0a0b0d;  /* text on accent fill       */
+  /* Tech world accent is monochrome: a bright warm off-white. */
+  --accent: #f7f4ec;
+  --accent-ink: #0a0a0c;  /* near-black text on off-white fill */
 }
 
 /* Personal world — hotter, louder accent (ring / film energy) */
@@ -44,6 +44,11 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-anton);
+
+  /* Clone palette: warm off-white "paper" + near-black "ink". The home clone
+     alternates full-bleed paper and ink panels, like contentarchitecture.dev. */
+  --color-paper: #f0ede6;
+  --color-ink: #141417;
 }
 
 html {
@@ -64,6 +69,18 @@ body {
 ::selection {
   background: var(--accent);
   color: var(--accent-ink);
+}
+
+/* Textured grey: a fixed film-grain tint over everything. Static, click-through,
+   faint enough to sit over modals harmlessly. Gives the flat dark a tactile surface. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* Thin, intentional scrollbar */
@@ -91,6 +108,22 @@ body {
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollCue {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(6px); opacity: 1; }
+}
+
+/* ASCII-curtain seam cell flicker, used between panels */
+@keyframes seamFlicker {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.5; }
 }
 
 /* Mouse-follow spotlight highlight for technical cards */
