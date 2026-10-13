@@ -1,107 +1,141 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { TbShieldLock, TbPlugConnected, TbTargetArrow } from "react-icons/tb";
 import Seam from "./seam";
 
-const TREE = [
-  { t: "> agentic-ai", dim: true },
-  { t: "> llm-tuning", dim: true },
-  { t: "v projects", dim: false },
-  { t: "    bid-platform.bfsi", dim: false, indent: true },
-  { t: "    drone-rl.ppo", dim: false, indent: true },
-  { t: "  rag-pipeline/", dim: false },
-  { t: "  claude-prospector/", dim: false },
-  { t: "  README.md", dim: false, active: true },
+const TABS = [
+  {
+    id: "architecture.ts",
+    code: `export const system = defineSystem({
+  runtime: "Air-gapped Kubernetes",
+  serving: ["vLLM", "quantized GGUF / AWQ"],
+  agents: {
+    sdk: "Claude Agent SDK + LangGraph",
+    retrieval: "Qdrant hybrid (BM25 + dense)",
+    guardrails: ["RBAC", "context caching"],
+  },
+  observability: ["Prometheus", "Grafana", "Loki"],
+})`,
+  },
+  {
+    id: "metrics.groq",
+    code: `*[_type == "deployment" && shipped == true] | order(impact desc) {
+  name,
+  precisionAt5,     // 94.2% on technical docs
+  proposalLatency,  // -60% review time
+  waypointRate,     // 92% sim-to-real
+  tokenCost,        // -40%
+  reliability,      // 99.8% uptime
+}`,
+  },
+  {
+    id: "schema.sql",
+    code: `create table bids (
+  id          uuid primary key,
+  reviewer_id uuid references users(id),
+  document    jsonb not null
+);
+
+-- row-level security: reviewers see only assigned bids
+create policy bid_access on bids
+  using (reviewer_id = current_user_id());`,
+  },
 ];
 
-const README: Array<{ t: string; kind?: "h" | "dim" | "code" }> = [
-  { t: "# pramod krishna sunkara", kind: "h" },
-  { t: "Forward Deployed Systems & Agentic AI Engineer.", kind: "dim" },
-  { t: "" },
-  { t: "Air-gapped LLM systems, autonomous multi-agent", kind: "dim" },
-  { t: "graphs, and the sovereign cloud that runs them.", kind: "dim" },
-  { t: "" },
-  { t: "- Agentic AI & multi-agent supervisor graphs" },
-  { t: "- LLM fine-tuning + quantized on-prem inference" },
-  { t: "- Hybrid semantic RAG (94.2% precision@5)" },
-  { t: "- Forward-deployed on zero-trust Kubernetes" },
-  { t: "" },
-  { t: "stack = [", kind: "code" },
-  { t: "  'Claude Agent SDK', 'LangGraph', 'FastAPI',", kind: "code" },
-  { t: "  'Qdrant', 'vLLM', 'PyTorch', 'Kubernetes',", kind: "code" },
-  { t: "]", kind: "code" },
+const TELEMETRY = [
+  { icon: TbShieldLock, label: "AIR-GAPPED" },
+  { icon: TbPlugConnected, label: "MCP READY" },
+  { icon: TbTargetArrow, label: "94.2% P@5" },
 ];
 
-/** Benefits section: ASCII-curtain seam into a black fake-IDE "this is the actual
- *  repo" mockup, carrying real stack + highlights. */
+/** Benefits section: ASCII-curtain seam into an interactive multi-tab code
+ *  window (tab-switch crossfade + telemetry strip), carrying the real stack. */
 export default function CloneBenefits() {
+  const [active, setActive] = useState(TABS[0].id);
+  const code = TABS.find((t) => t.id === active)?.code ?? "";
+
   return (
     <>
       <Seam tone="ink" />
       <section id="stack" className="relative isolate bg-ink px-6 pb-28 pt-4 text-paper sm:px-10 lg:px-16 lg:pb-40">
         <div className="mx-auto max-w-6xl">
           <h2 className="max-w-2xl text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl">
-            Everything here is readable,
+            Every decision already made.
             <br />
-            forkable, and real.
+            So you can skip to the actual work.
           </h2>
 
-          <div className="mt-14 overflow-hidden rounded-md border border-paper/15 bg-[#0c0c0e] font-mono text-xs">
-            <div className="flex items-center justify-between border-b border-paper/10 px-3 py-2 text-paper/60">
-              <div className="flex gap-1">
-                <span className="rounded-sm bg-paper/10 px-2 py-1 text-paper">AGENTS</span>
-                <span className="px-2 py-1">INFRA</span>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-14 overflow-hidden rounded-xl border border-paper/12 bg-[#0c0c0e] shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+          >
+            {/* window header */}
+            <div className="flex items-center justify-between border-b border-paper/10 bg-paper/[0.03] px-4 py-3">
+              <div className="flex items-center gap-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-paper/20" />
+                <span className="h-2.5 w-2.5 rounded-full bg-paper/20" />
+                <span className="h-2.5 w-2.5 rounded-full bg-paper/50" />
               </div>
-              <span className="hidden tracking-wider sm:block">THIS IS THE ACTUAL REPO.</span>
-              <div className="flex gap-2">
-                <span className="rounded-sm border border-paper/15 px-1.5 py-0.5">Ctrl J</span>
-                <span className="rounded-sm border border-paper/15 px-1.5 py-0.5">Ctrl K</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-[9rem_1fr_2.5rem] sm:grid-cols-[12rem_1fr_3rem]">
-              <ul className="border-r border-paper/10 py-3 text-paper/70">
-                {TREE.map((n, i) => (
-                  <li
-                    key={i}
-                    className={`truncate px-3 py-0.5 ${n.dim ? "text-paper/40" : ""} ${
-                      "active" in n && n.active ? "bg-paper/10 text-paper" : ""
-                    }`}
-                  >
-                    {n.t}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="overflow-x-auto py-3">
-                {README.map((l, i) => (
-                  <div key={i} className="flex gap-4 px-3 leading-6">
-                    <span className="w-5 shrink-0 select-none text-right text-paper/25">{i + 1}</span>
-                    <span
-                      className={
-                        l.kind === "h"
-                          ? "font-medium text-paper"
-                          : l.kind === "dim"
-                          ? "text-paper/45"
-                          : l.kind === "code"
-                          ? "text-paper/80"
-                          : "text-paper/70"
-                      }
+              <span className="hidden font-mono text-[11px] uppercase tracking-wider text-paper/45 sm:block">
+                this is the actual repo.
+              </span>
+              <div className="flex items-center gap-1 rounded-lg border border-paper/5 bg-black/40 p-1">
+                {TABS.map((t) => {
+                  const isActive = t.id === active;
+                  return (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => setActive(t.id)}
+                      className={`relative rounded-md px-3 py-1 font-mono text-[11px] transition-colors ${
+                        isActive ? "text-paper" : "text-paper/40 hover:text-paper/70"
+                      }`}
                     >
-                      {l.t || " "}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-col gap-0.5 border-l border-paper/10 py-3 pr-2 pl-1">
-                {Array.from({ length: 22 }).map((_, i) => (
-                  <span
-                    key={i}
-                    className="h-0.5 rounded-full bg-paper/15"
-                    style={{ width: `${30 + ((i * 37) % 60)}%` }}
-                  />
-                ))}
+                      {isActive && (
+                        <motion.span
+                          layoutId="activeCodeTab"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                          className="absolute inset-0 rounded-md border border-paper/10 bg-paper/10"
+                        />
+                      )}
+                      <span className="relative z-10">{t.id}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
-          </div>
+
+            {/* code body */}
+            <div className="min-h-[260px] overflow-x-auto p-6">
+              <AnimatePresence mode="wait">
+                <motion.pre
+                  key={active}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -6 }}
+                  transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }}
+                  className="font-mono text-[13px] leading-[1.6] text-paper/70 lg:text-sm"
+                >
+                  <code>{code}</code>
+                </motion.pre>
+              </AnimatePresence>
+            </div>
+
+            {/* telemetry footer */}
+            <div className="grid grid-cols-3 border-t border-paper/10 bg-paper/[0.02] px-4 py-3 font-mono text-[11px] uppercase tracking-wider text-paper/45">
+              {TELEMETRY.map(({ icon: Icon, label }) => (
+                <div key={label} className="flex items-center gap-2">
+                  <Icon className="h-3.5 w-3.5 text-paper/80" aria-hidden />
+                  <span>{label}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
     </>
