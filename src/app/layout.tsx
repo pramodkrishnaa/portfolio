@@ -5,6 +5,7 @@ import SmoothScroll from "@/components/smooth-scroll";
 import WorldTheme from "@/components/world-theme";
 import WorldTransitionProvider from "@/components/site/world-transition";
 import CommandLayer from "@/components/site/command-layer";
+import BlobTransition from "@/components/site/blob-transition";
 import { PERSONAL_INFO } from "@/content/site";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <WorldTransitionProvider>
           <SmoothScroll>{children}</SmoothScroll>
           <CommandLayer />
+          <BlobTransition />
         </WorldTransitionProvider>
       </body>
     </html>

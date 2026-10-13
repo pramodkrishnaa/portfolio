@@ -52,8 +52,8 @@ export interface PersonalExhibition {
 export const PERSONAL_INFO = {
   name: "PRAMOD KRISHNA SUNKARA",
   shortName: "PKS",
-  tagline: "Forward Deployed Systems & Agentic AI Engineer",
-  subTagline: "Architecting air-gapped LLM systems, autonomous multi-agent graphs, and sovereign cloud infrastructure for enterprise.",
+  tagline: "AI Researcher & Agentic Systems Engineer",
+  subTagline: "22-year-old AI researcher and agentic AI team lead. Agent evals, RL fine-tuning, MCP security and air-gapped LLM systems, from paper to production.",
   location: "Bengaluru, India (Remote / On-site)",
   availability: "Available for Senior FDE & Agentic AI Roles",
   email: "pramodkrishnaa29@gmail.com",

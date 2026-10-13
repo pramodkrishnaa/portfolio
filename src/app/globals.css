@@ -204,3 +204,62 @@ body::before {
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 20%, transparent 75%);
 }
+
+/* ==========================================================================
+   HANDOFF MICRO-INTERACTIONS (contentarchitecture.dev spec, monochrome)
+   ========================================================================== */
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(235, 235, 236, 0.45); }
+  50% { opacity: 0.72; transform: scale(0.85); box-shadow: 0 0 8px 4px rgba(235, 235, 236, 0); }
+}
+.dot-accent {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: currentColor;
+  animation: dotPulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.btn-cta {
+  transition: transform 200ms cubic-bezier(0.2, 0, 0, 1), background-color 200ms ease, box-shadow 200ms ease;
+}
+.btn-cta:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.28); }
+.btn-cta:active { transform: translateY(0) scale(0.98); }
+@media (prefers-reduced-motion: reduce) {
+  .dot-accent { animation: none !important; }
+  .btn-cta:hover { transform: none; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [style*="fadeUp"], [class*="fadeUp"] { animation: none !important; }
+}
+
+/* line-by-line reveal: a soft mask sweeps top → bottom */
+.line-reveal {
+  -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent 60%);
+  mask-image: linear-gradient(to bottom, #000 40%, transparent 60%);
+  -webkit-mask-size: 100% 300%;
+  mask-size: 100% 300%;
+  -webkit-mask-position: 0 100%;
+  mask-position: 0 100%;
+  transition: -webkit-mask-position 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), mask-position 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.line-reveal.is-in { -webkit-mask-position: 0 0; mask-position: 0 0; }
+@media (prefers-reduced-motion: reduce) {
+  .line-reveal { -webkit-mask-image: none; mask-image: none; }
+}
+@keyframes caret { 50% { opacity: 0; } }
+
+/* persistent chrome visibility (IDE full-bleed + recruiter-mode toggles) */
+.chrome-fade { transition: opacity 0.25s ease; }
+html[data-chrome="hidden"] .chrome-fade { opacity: 0; pointer-events: none; }
+html[data-hideheader="1"] [data-chrome-part="header"],
+html[data-hideminimap="1"] [data-chrome-part="minimap"],
+html[data-hidelearnmore="1"] [data-chrome-part="learnmore"] { display: none; }
+html[data-motion="off"] *, html[data-motion="off"] *::before, html[data-motion="off"] *::after {
+  animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important;
+}
