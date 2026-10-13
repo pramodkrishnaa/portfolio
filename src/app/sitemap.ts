@@ -3,8 +3,8 @@ import { getAllPosts } from "@/lib/blog";
 
 const BASE = "https://pramodkrishna.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getAllPosts().map((p) => ({
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = (await getAllPosts()).map((p) => ({
     url: `${BASE}/blog/${p.slug}`,
     changeFrequency: "yearly" as const,
     priority: 0.6,

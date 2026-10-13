@@ -93,12 +93,32 @@ body {
   to { transform: translateX(-50%); }
 }
 
+/* Mouse-follow spotlight highlight for technical cards */
+.spotlight {
+  position: relative;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    220px circle at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+.spotlight:hover::before { opacity: 1; }
+
 /* Form inputs */
 .field {
   width: 100%;
   background: var(--bg-elev);
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 0.7rem 0.9rem;
   font-size: 0.925rem;
   color: var(--fg);

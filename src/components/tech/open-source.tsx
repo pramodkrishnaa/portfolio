@@ -30,7 +30,8 @@ export default function OpenSource() {
     <Section className="py-28">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
         <div>
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">03 / Open source</p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
             I ship in public on the same tools I use daily.
           </h2>
           <p className="mt-5 max-w-sm leading-relaxed text-muted">
@@ -41,7 +42,7 @@ export default function OpenSource() {
               href={P.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-sm text-fg transition-colors hover:border-accent"
+              className="inline-flex items-center gap-2 rounded-sm border border-line px-4 py-2 font-mono text-sm text-fg transition-colors hover:border-accent"
             >
               <TbBrandGithub aria-hidden /> @ApexKrish
             </Link>
@@ -49,7 +50,7 @@ export default function OpenSource() {
               href={P.githubAlt}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-line px-4 py-2 font-mono text-sm text-fg transition-colors hover:border-accent"
+              className="inline-flex items-center gap-2 rounded-sm border border-line px-4 py-2 font-mono text-sm text-fg transition-colors hover:border-accent"
             >
               <TbBrandGithub aria-hidden /> @pramodkrishnaa
             </Link>

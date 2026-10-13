@@ -15,7 +15,7 @@ export default function WorldToggle({ className = "" }: { className?: string }) 
     <button
       type="button"
       onClick={() => go(to)}
-      className={`group inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider text-muted transition-colors hover:border-accent hover:text-fg ${className}`}
+      className={`group inline-flex items-center gap-2 rounded-sm border border-line px-3.5 py-1.5 font-mono text-xs uppercase tracking-wider text-muted transition-colors hover:border-accent hover:text-fg ${className}`}
     >
       <span className="text-dim">to</span>
       <span className="text-fg">{label}</span>

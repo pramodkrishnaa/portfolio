@@ -13,8 +13,8 @@ export const metadata = {
 
 const navLinks = [{ label: "Home", href: "/" }];
 
-export default function BlogIndex() {
-  const posts = getAllPosts();
+export default async function BlogIndex() {
+  const posts = await getAllPosts();
   return (
     <main className="pt-16">
       <Nav links={navLinks} />

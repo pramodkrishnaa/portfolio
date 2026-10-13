@@ -41,7 +41,8 @@ export default function Contact() {
     <Section id="contact" className="py-28">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
         <div>
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">05 / Contact</p>
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
             Let&apos;s build something that ships.
           </h2>
           <p className="mt-5 max-w-sm leading-relaxed text-muted">
@@ -101,7 +102,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={status === "sending" || status === "success"}
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-ink transition-transform active:translate-y-px disabled:opacity-60"
+              className="inline-flex items-center gap-2 rounded-sm bg-accent px-5 py-3 font-mono text-xs font-medium uppercase tracking-wider text-accent-ink transition-transform active:translate-y-px disabled:opacity-60"
             >
               {status === "sending" && <TbLoader2 className="animate-spin" aria-hidden />}
               {status === "success" && <TbCheck aria-hidden />}

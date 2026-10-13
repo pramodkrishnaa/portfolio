@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { PortableText } from "@portabletext/react";
 import { TbArrowLeft } from "react-icons/tb";
 import Nav from "@/components/site/nav";
 import Footer from "@/components/site/footer";
@@ -8,20 +9,20 @@ import { getAllPosts, getPostBySlug } from "@/lib/blog";
 
 const navLinks = [{ label: "Writing", href: "/blog" }];
 
-export function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getAllPosts()).map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) return {};
   return { title: post.title, description: post.excerpt };
 }
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = await getPostBySlug(slug);
   if (!post) notFound();
 
   return (
@@ -45,9 +46,11 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <p className="mt-5 text-xl leading-relaxed text-muted">{post.subtitle}</p>
 
           <div className="mt-10 space-y-5 text-[1.0625rem] leading-relaxed text-fg/90">
-            {post.content.map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
+            {post.body ? (
+              <PortableText value={post.body as never} />
+            ) : (
+              post.content?.map((para, i) => <p key={i}>{para}</p>)
+            )}
           </div>
 
           <div className="mt-10 flex flex-wrap gap-1.5 border-t border-line pt-6">

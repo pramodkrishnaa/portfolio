@@ -17,13 +17,13 @@ export default function Nav({ links, home = "/" }: { links: NavLink[]; home?: st
           PKS<span className="text-accent">.</span>
         </Link>
 
-        <div className="flex items-center gap-1 rounded-full border border-line bg-bg-elev/70 px-1.5 py-1 backdrop-blur-md">
+        <div className="flex items-center gap-1 rounded-md border border-line bg-bg-elev/70 px-1.5 py-1 backdrop-blur-md">
           <ul className="hidden items-center gap-1 md:flex">
             {links.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="rounded-full px-3 py-1.5 font-mono text-xs uppercase tracking-wider text-muted transition-colors hover:bg-bg-raise hover:text-fg"
+                  className="rounded-sm px-3 py-1.5 font-mono text-xs uppercase tracking-wider text-muted transition-colors hover:bg-bg-raise hover:text-fg"
                 >
                   {l.label}
                 </Link>
