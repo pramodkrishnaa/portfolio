@@ -59,7 +59,7 @@ export default function CloneHero() {
 
       {/* RIGHT — ink vortex */}
       <div className="relative min-h-[60svh] overflow-hidden bg-ink lg:min-h-svh">
-        <RadialVortex words={["PRAMOD KRISHNA SUNKARA"]} className="absolute inset-0" />
+        <RadialVortex words={["LOREM IPSUM DOLOR SIT AMET"]} className="absolute inset-0" />
         {/* seam shadow where the two panels meet */}
         <div
           className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-paper/15 to-transparent lg:from-ink/0"

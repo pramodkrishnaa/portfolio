@@ -11,7 +11,7 @@ export default function CloneOutro() {
       <Seam tone="ink" />
       <section id="contact" className="relative isolate flex min-h-svh flex-col justify-center overflow-hidden bg-ink px-6 py-28 text-paper sm:px-10 lg:px-16">
         <div className="pointer-events-none absolute inset-0 opacity-70">
-          <RadialVortex words={["PRAMOD KRISHNA SUNKARA"]} className="absolute inset-0" />
+          <RadialVortex words={["LOREM IPSUM DOLOR SIT AMET"]} className="absolute inset-0" />
         </div>
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-transparent" aria-hidden />
 
