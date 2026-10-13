@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pramod Krishna Sunkara — Portfolio
 
-## Getting Started
+One site, two worlds. A minimal, technical developer portfolio at `/` and a loud,
+cinematic personal world at `/life`, joined by a signature full-screen curtain
+transition. Built from scratch, no template.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router) + **React 19** + **TypeScript**
+- **Tailwind v4** with CSS-variable design tokens (one dark theme; accent swaps per world)
+- **Framer Motion** (reveals, transition, lightbox, terminal)
+- **GSAP + Lenis** (smooth scroll synced to ScrollTrigger)
+- **React Three Fiber + drei** (hero shader background, guarded + reduced-motion aware)
+- **react-icons** (Tabler UI glyphs + brand marks) — no hand-rolled SVGs
+
+## Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Keyboard
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `⌘K` / `Ctrl+K` — command terminal (type `help`)
+- `P` — flip between the tech and life worlds
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Where the content lives
 
-## Learn More
+Everything swappable is in **`src/content/site.ts`** — name, taglines, the eight
+technical disciplines, the six personal exhibitions, and the blog posts. Edit that
+one file to update the site.
 
-To learn more about Next.js, take a look at the following resources:
+- **Media**: the tech "Selected work" uses labeled placeholder slots naming the file to
+  drop into `public/` later. The `/life` lookbook uses seeded `picsum.photos` images as
+  stand-ins — swap the `gallery()` URLs in `src/components/life/lookbook.tsx` for real
+  photos, or point them at files in `public/`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contact form
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The form posts to `src/app/api/contact/route.ts`. It sends via [Resend](https://resend.com)
+when configured; otherwise it returns an honest "not wired up yet" message (no fake
+success). Set these env vars to enable real delivery:
 
-## Deploy on Vercel
+```
+RESEND_API_KEY=re_xxx
+CONTACT_TO=pramodkrishnaa29@gmail.com     # optional, defaults to the site email
+CONTACT_FROM=Portfolio <onboarding@resend.dev>   # optional
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Blog / CMS upgrade (optional)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The blog is live now, served from `BLOG_POSTS` in `src/content/site.ts` through the
+data seam in `src/lib/blog.ts`. To move editing into a browser-based CMS:
+
+1. Create a free Sanity project, note the `projectId`.
+2. `npm install sanity next-sanity @portabletext/react`
+3. Add `NEXT_PUBLIC_SANITY_PROJECT_ID` + `NEXT_PUBLIC_SANITY_DATASET` to `.env`.
+4. Swap the two functions in `src/lib/blog.ts` for GROQ queries, and add a
+   `src/app/studio/[[...tool]]/page.tsx` embedding the Studio. The blog pages don't change.
+
+## Deploy (Vercel)
+
+1. Push to GitHub.
+2. Import the repo at [vercel.com/new](https://vercel.com/new).
+3. Add the contact env vars (and Sanity vars if used).
+4. Attach a custom domain when ready; `*.vercel.app` works until then.
+
+## Notes
+
+- One dark theme, locked; accent is electric blue on `/`, signal red on `/life`.
+- Honors `prefers-reduced-motion` everywhere (WebGL, transition, reveals, marquee all
+  collapse to static). Mobile-first, no horizontal overflow. Per-route metadata, sitemap,
+  robots included.
