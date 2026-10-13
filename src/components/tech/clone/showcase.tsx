@@ -7,6 +7,7 @@ type Project = {
   context: string;
   explain: string;
   url: string;
+  img: string;
 };
 
 const PROJECTS: Project[] = [
@@ -16,6 +17,7 @@ const PROJECTS: Project[] = [
     context: "QuadGen · multi-agent + RAG",
     explain: "Claude Agent SDK + LangGraph orchestration with Qdrant hybrid search. Guardrails and context caching resolving HRMS workflows autonomously — 94.2% precision@5 on technical docs.",
     url: "QuadGen · on-prem",
+    img: "/showcase/ai-workforce.svg",
   },
   {
     emboss: "DRONE RL",
@@ -23,6 +25,7 @@ const PROJECTS: Project[] = [
     context: "PPO → MAVLink",
     explain: "Flight-control policy trained in PyBullet with domain randomization, bridged sim-to-real over serial telemetry — 92% real-world waypoint acquisition.",
     url: "github.com/pramodkrishnaa/Drone-Navigation-Project",
+    img: "/showcase/drone-rl.svg",
   },
   {
     emboss: "BID PLATFORM",
@@ -30,6 +33,7 @@ const PROJECTS: Project[] = [
     context: "BFSI · FastAPI / PostgreSQL",
     explain: "On-prem system scoped with the CFO office. Strict RBAC, zero egress, row-level security — cut proposal review latency by 60% with no data leakage.",
     url: "QuadGen · air-gapped",
+    img: "/showcase/bid-platform.svg",
   },
   {
     emboss: "INVOICE RPA",
@@ -37,6 +41,7 @@ const PROJECTS: Project[] = [
     context: "UiPath + OCR → SAP",
     explain: "End-to-end REFramework bot extracting vendor data from multi-layout PDFs into SAP ERP journal entries — 80% less manual work, higher accuracy.",
     url: "github.com/pramodkrishnaa/Invoice-Processing-Automation",
+    img: "/showcase/invoice-rpa.svg",
   },
   {
     emboss: "SOVEREIGN",
@@ -44,6 +49,7 @@ const PROJECTS: Project[] = [
     context: "HCL × Yotta · BFSI",
     explain: "Acted as SPOC architecting an air-gapped agentic-AI development environment on sovereign compute, and a strategic BFSI industry consortium.",
     url: "Consortium · under NDA",
+    img: "/showcase/sovereign-cloud.svg",
   },
   {
     emboss: "PROSPECTOR",
@@ -51,11 +57,12 @@ const PROJECTS: Project[] = [
     context: "Open source · Claude Code plugin",
     explain: "Installable plugin with three agent skills (lead-scout, proposal, copy) over a shared config, deterministic ranking, zero hallucination by design. MIT licensed.",
     url: "github.com/pramodkrishnaa/claude-prospector",
+    img: "/showcase/claude-prospector.svg",
   },
 ];
 
-/** Showcase: real deployments rendered as ASCII-art panels, matching the
- *  contentarchitecture.dev gallery. Black panel. */
+/** Showcase: real deployments rendered as ASCII-art panels that resolve into the
+ *  real image on hover. Matches the contentarchitecture.dev gallery. */
 export default function CloneShowcase() {
   return (
     <>
@@ -68,21 +75,29 @@ export default function CloneShowcase() {
           <p className="mt-6 max-w-xl text-base leading-relaxed text-paper/55">
             Real systems, shipped into production. The hard part was always the plumbing:
             air-gapped clusters, RBAC, telemetry, evals. With that handled, the effort goes
-            where it shows.
+            where it shows. Hover any panel to resolve it.
           </p>
 
           <div className="mt-16 grid grid-cols-1 gap-x-10 gap-y-16 lg:grid-cols-2">
             {PROJECTS.map((p, i) => (
               <article key={p.label} className="group">
-                {/* ASCII panel */}
-                <div className="overflow-hidden rounded-sm border border-paper/12 bg-[#060606] p-3">
-                  <AsciiArt emboss={p.emboss} seed={i + 1} />
+                {/* ASCII panel → resolves to the real image on hover */}
+                <div className="relative overflow-hidden rounded-sm border border-paper/12 bg-[#060606]">
+                  <div className="p-3 transition-opacity duration-500 ease-out group-hover:opacity-10">
+                    <AsciiArt emboss={p.emboss} src={p.img} seed={i + 1} />
+                  </div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={p.img}
+                    alt={p.label}
+                    className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+                  />
                 </div>
 
                 {/* label + context + explanation + url */}
                 <div className="mt-5 flex flex-col gap-2">
                   <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-mono text-sm uppercase tracking-wider text-paper">
+                    <h3 className="font-mono text-sm uppercase tracking-wider text-paper transition-colors group-hover:text-accent">
                       {p.label}
                     </h3>
                     <span className="shrink-0 font-mono text-[11px] uppercase tracking-wider text-paper/40">

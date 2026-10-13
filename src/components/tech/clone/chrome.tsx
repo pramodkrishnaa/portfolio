@@ -14,21 +14,14 @@ export default function CloneChrome() {
     if (window.matchMedia("(pointer: coarse)").matches) return;
     const el = dot.current;
     if (!el) return;
-    let raf = 0;
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
-    let tx = x;
-    let ty = y;
-    const onMove = (e: MouseEvent) => { tx = e.clientX; ty = e.clientY; };
-    const loop = () => {
-      x += (tx - x) * 0.2;
-      y += (ty - y) * 0.2;
-      el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
-      raf = requestAnimationFrame(loop);
+    // Compositor-driven follow: set the target transform on move and let a CSS
+    // transition smooth it. Consistent regardless of main-thread load (no RAF
+    // lerp that stutters on heavy sections).
+    const onMove = (e: MouseEvent) => {
+      el.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
     };
     window.addEventListener("mousemove", onMove);
-    loop();
-    return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf); };
+    return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
   return (
@@ -87,7 +80,7 @@ export default function CloneChrome() {
       {/* custom cursor */}
       <div
         ref={dot}
-        className="pointer-events-none fixed top-0 left-0 z-[9999] hidden h-3 w-3 rounded-full bg-paper mix-blend-difference will-change-transform lg:block"
+        className="pointer-events-none fixed top-0 left-0 z-[9999] hidden h-3 w-3 rounded-full bg-paper mix-blend-difference transition-transform duration-150 ease-out will-change-transform lg:block"
         aria-hidden
       />
     </>

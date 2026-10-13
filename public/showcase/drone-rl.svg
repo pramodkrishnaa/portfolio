@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#26262a"/>
+      <stop offset="100%" stop-color="#070708"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#g)"/>
+  <!-- telemetry grid -->
+  <g stroke="#3a3a40" stroke-width="1" opacity="0.45">
+    <path d="M0 250H1600M0 500H1600M0 750H1600M250 0V1000M550 0V1000M850 0V1000M1150 0V1000M1450 0V1000"/>
+  </g>
+  <!-- waypoint path -->
+  <path d="M180 820 L520 600 L760 680 L1040 380 L1380 300" fill="none" stroke="#cfcfd4" stroke-width="3" stroke-dasharray="4 14" opacity="0.7"/>
+  <g fill="#9a9aa0">
+    <circle cx="180" cy="820" r="8"/><circle cx="520" cy="600" r="8"/><circle cx="760" cy="680" r="8"/><circle cx="1040" cy="380" r="8"/><circle cx="1380" cy="300" r="10" fill="#f2f2f4"/>
+  </g>
+  <!-- quadcopter (top-down) -->
+  <g transform="translate(820 500)" stroke="#0b0b0c" stroke-width="4">
+    <g stroke="#e8e8ec" stroke-width="10" opacity="0.9">
+      <line x1="-150" y1="-150" x2="150" y2="150"/>
+      <line x1="150" y1="-150" x2="-150" y2="150"/>
+    </g>
+    <g fill="#3a3a40" stroke="#e8e8ec" stroke-width="4" opacity="0.8">
+      <circle cx="-150" cy="-150" r="70"/><circle cx="150" cy="-150" r="70"/>
+      <circle cx="-150" cy="150" r="70"/><circle cx="150" cy="150" r="70"/>
+    </g>
+    <rect x="-55" y="-55" width="110" height="110" rx="14" fill="#f2f2f4"/>
+  </g>
+</svg>

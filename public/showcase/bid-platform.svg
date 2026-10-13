@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="45%" r="62%">
+      <stop offset="0%" stop-color="#27272b"/>
+      <stop offset="100%" stop-color="#070708"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#g)"/>
+  <!-- isolation perimeter -->
+  <rect x="120" y="140" width="1360" height="720" fill="none" stroke="#5a5a62" stroke-width="3" stroke-dasharray="18 14" opacity="0.7"/>
+  <!-- server racks -->
+  <g>
+    <g fill="#1b1b1f" stroke="#e8e8ec" stroke-width="3">
+      <rect x="360" y="300" width="180" height="430" rx="8"/>
+      <rect x="610" y="300" width="180" height="430" rx="8"/>
+      <rect x="860" y="300" width="180" height="430" rx="8"/>
+    </g>
+    <g fill="#9a9aa0">
+      <!-- rack units -->
+      <g opacity="0.85">
+        <rect x="378" y="320" width="144" height="22"/><rect x="378" y="352" width="144" height="22"/><rect x="378" y="384" width="144" height="22"/><rect x="378" y="416" width="144" height="22"/><rect x="378" y="448" width="144" height="22"/>
+        <rect x="628" y="320" width="144" height="22"/><rect x="628" y="352" width="144" height="22"/><rect x="628" y="384" width="144" height="22"/><rect x="628" y="416" width="144" height="22"/><rect x="628" y="448" width="144" height="22"/>
+        <rect x="878" y="320" width="144" height="22"/><rect x="878" y="352" width="144" height="22"/><rect x="878" y="384" width="144" height="22"/><rect x="878" y="416" width="144" height="22"/><rect x="878" y="448" width="144" height="22"/>
+      </g>
+      <g fill="#f2f2f4"><rect x="378" y="690" width="40" height="14"/><rect x="628" y="690" width="40" height="14"/><rect x="878" y="690" width="40" height="14"/></g>
+    </g>
+  </g>
+  <!-- vault lock -->
+  <g transform="translate(1230 510)" stroke="#0b0b0c" stroke-width="4">
+    <circle r="120" fill="#1b1b1f" stroke="#e8e8ec" stroke-width="5"/>
+    <circle r="78" fill="none" stroke="#9a9aa0" stroke-width="10"/>
+    <path d="M-40 -8 V-40 a40 40 0 0 1 80 0 V-8" fill="none" stroke="#f2f2f4" stroke-width="12"/>
+    <rect x="-46" y="-8" width="92" height="76" rx="12" fill="#f2f2f4"/>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#2a2a2e"/>
+      <stop offset="100%" stop-color="#070708"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#g)"/>
+  <g stroke="#3a3a40" stroke-width="1" opacity="0.5">
+    <path d="M0 200H1600M0 400H1600M0 600H1600M0 800H1600"/>
+    <path d="M200 0V1000M400 0V1000M600 0V1000M800 0V1000M1000 0V1000M1200 0V1000M1400 0V1000"/>
+  </g>
+  <!-- edges -->
+  <g stroke="#cfcfd4" stroke-width="2" opacity="0.55" fill="none">
+    <path d="M800 230 L470 470 M800 230 L1130 470 M800 230 L800 470"/>
+    <path d="M470 470 L300 720 M470 470 L560 720 M800 470 L800 720 M1130 470 L1040 720 M1130 470 L1300 720"/>
+  </g>
+  <!-- nodes -->
+  <g fill="#f2f2f4" stroke="#0b0b0c" stroke-width="3">
+    <circle cx="800" cy="230" r="34"/>
+    <circle cx="470" cy="470" r="24"/>
+    <circle cx="800" cy="470" r="24"/>
+    <circle cx="1130" cy="470" r="24"/>
+    <circle cx="300" cy="720" r="16"/>
+    <circle cx="560" cy="720" r="16"/>
+    <circle cx="800" cy="720" r="16"/>
+    <circle cx="1040" cy="720" r="16"/>
+    <circle cx="1300" cy="720" r="16"/>
+  </g>
+  <g fill="#9a9aa0">
+    <circle cx="800" cy="230" r="54" opacity="0.18"/>
+    <circle cx="470" cy="470" r="40" opacity="0.14"/>
+    <circle cx="1130" cy="470" r="40" opacity="0.14"/>
+  </g>
+</svg>

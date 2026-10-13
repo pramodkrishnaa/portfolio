@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="48%" r="60%">
+      <stop offset="0%" stop-color="#28282c"/>
+      <stop offset="100%" stop-color="#070708"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#g)"/>
+  <!-- shield outline formed around cluster -->
+  <path d="M800 170 L1120 290 V540 C1120 720 970 810 800 870 C630 810 480 720 480 540 V290 Z"
+        fill="none" stroke="#5a5a62" stroke-width="4" opacity="0.7"/>
+  <!-- connecting mesh -->
+  <g stroke="#cfcfd4" stroke-width="2" opacity="0.5">
+    <path d="M800 500 L800 320 M800 500 L630 420 M800 500 L970 420 M800 500 L650 620 M800 500 L950 620 M800 500 L800 700"/>
+  </g>
+  <!-- cluster node modules -->
+  <g fill="#1b1b1f" stroke="#e8e8ec" stroke-width="4">
+    <rect x="752" y="268" width="96" height="96" rx="12"/>
+    <rect x="566" y="372" width="96" height="96" rx="12"/>
+    <rect x="938" y="372" width="96" height="96" rx="12"/>
+    <rect x="586" y="572" width="96" height="96" rx="12"/>
+    <rect x="918" y="572" width="96" height="96" rx="12"/>
+    <rect x="752" y="652" width="96" height="96" rx="12"/>
+  </g>
+  <!-- central control node -->
+  <g>
+    <circle cx="800" cy="500" r="66" fill="#f2f2f4" stroke="#0b0b0c" stroke-width="4"/>
+    <circle cx="800" cy="500" r="96" fill="none" stroke="#9a9aa0" stroke-width="3" opacity="0.5"/>
+  </g>
+  <g fill="#9a9aa0" opacity="0.85">
+    <rect x="766" y="292" width="68" height="10"/><rect x="580" y="396" width="68" height="10"/><rect x="952" y="396" width="68" height="10"/>
+  </g>
+</svg>
