@@ -16,6 +16,13 @@
   /* Tech world accent is matte monochrome: a neutral near-white. */
   --accent: #f2f2f3;
   --accent-ink: #0a0a0b;  /* near-black text on light fill */
+
+  /* Life world — loud palette (raw vars, also exposed for inline gradients) */
+  --flame: #ff2d1a;
+  --ember: #ff6a00;
+  --sun: #ffcf1a;
+  --night: #0c0a09;
+  --bone: #f6f1e5;
 }
 
 /* Personal world — hotter, louder accent (ring / film energy) */
@@ -49,6 +56,13 @@
      Black/grey/white, no warm tint. Alternating full-bleed panels. */
   --color-paper: #ebebec;
   --color-ink: #131315;
+
+  /* Life palette: loud, high-energy. Red / orange / yellow / black / cream. */
+  --color-flame: var(--flame);
+  --color-ember: var(--ember);
+  --color-sun: var(--sun);
+  --color-night: var(--night);
+  --color-bone: var(--bone);
 }
 
 html {
