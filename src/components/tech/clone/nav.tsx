@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { TbGridDots } from "react-icons/tb";
-import WorldToggle from "@/components/site/world-toggle";
+import WorldSwitch from "@/components/site/world-switch";
 
 const LINKS = ["Work", "Stack", "Showcase", "Pricing", "FAQ"];
 const TICKER = "AVAILABLE FOR SENIOR ENGINEERING ROLES";
@@ -29,7 +29,7 @@ export default function CloneNav() {
             ))}
           </ul>
           <div className="ml-auto md:ml-0">
-            <WorldToggle />
+            <WorldSwitch />
           </div>
         </nav>
         {/* ticker strip */}
