@@ -1,15 +1,15 @@
 import Seam from "./seam";
 
 const FAQS: Array<[string, string]> = [
-  ["What is this, exactly?", "A personal portfolio built like a product: real stack, real source, no borrowed template."],
-  ["Can I see the code?", "Yes. Everything is readable and forkable. The content lives in one swap-point file."],
-  ["What is it built with?", "Next.js App Router, React Server Components, Tailwind, and a smooth-scroll motion layer."],
-  ["Does it work on mobile?", "Mobile-first, no horizontal overflow, and it honors reduced-motion everywhere."],
-  ["How do I get in touch?", "Use the contact link. Messages go to a real inbox, never a fake success screen."],
-  ["Is the content final?", "No. These are honest placeholders, swapped section by section as the real work lands."],
+  ["What do you do?", "Forward Deployed + Agentic AI engineering: I scope ambiguous enterprise needs, architect the systems, and run what I ship."],
+  ["What's your stack?", "Claude Agent SDK, LangGraph, FastAPI, Qdrant, vLLM, PyTorch, PostgreSQL, Kubernetes, and the sovereign infra around them."],
+  ["Where are you based?", "Bengaluru, India. Open to remote or on-site."],
+  ["Are you available?", "Yes, for senior Forward Deployed and Agentic AI roles, and scoped consulting engagements."],
+  ["Can I see the code?", "Yes. I build in the open at github.com/ApexKrish and github.com/pramodkrishnaa."],
+  ["How do I reach you?", "Email pramodkrishnaa29@gmail.com, or the contact button. Messages hit a real inbox, never a fake success screen."],
 ];
 
-/** FAQ: "before you reach out" Q&A list on a black panel. */
+/** FAQ: "before you reach out" Q&A list on a black panel. Real answers. */
 export default function CloneFAQ() {
   return (
     <>

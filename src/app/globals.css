@@ -9,13 +9,13 @@
   --bg-raise: #1c1c20;    /* hover / raised            */
   --line: #27272c;        /* hairline border           */
   --line-strong: #3a3a41;
-  --fg: #edeae3;          /* primary text, warm off-white */
-  --muted: #9a9aa1;       /* secondary text, neutral grey */
-  --dim: #5c5c63;         /* tertiary / labels         */
+  --fg: #eaeaec;          /* primary text, neutral off-white */
+  --muted: #9a9a9e;       /* secondary text, neutral grey */
+  --dim: #5c5c60;         /* tertiary / labels         */
 
-  /* Tech world accent is monochrome: a bright warm off-white. */
-  --accent: #f7f4ec;
-  --accent-ink: #0a0a0c;  /* near-black text on off-white fill */
+  /* Tech world accent is matte monochrome: a neutral near-white. */
+  --accent: #f2f2f3;
+  --accent-ink: #0a0a0b;  /* near-black text on light fill */
 }
 
 /* Personal world — hotter, louder accent (ring / film energy) */
@@ -45,10 +45,10 @@
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-anton);
 
-  /* Clone palette: warm off-white "paper" + near-black "ink". The home clone
-     alternates full-bleed paper and ink panels, like contentarchitecture.dev. */
-  --color-paper: #f0ede6;
-  --color-ink: #141417;
+  /* Clone palette: matte neutral off-white "paper" + soft near-black "ink".
+     Black/grey/white, no warm tint. Alternating full-bleed panels. */
+  --color-paper: #ebebec;
+  --color-ink: #131315;
 }
 
 html {
@@ -124,6 +124,12 @@ body::before {
 @keyframes seamFlicker {
   0%, 100% { opacity: 0.08; }
   50% { opacity: 0.5; }
+}
+
+/* Seam dissolve driven by scroll progress (--seam-reveal 0..1, set by GSAP) */
+.seam-cells {
+  opacity: calc(1 - var(--seam-reveal, 0));
+  transform: translateY(calc(var(--seam-reveal, 0) * -28px));
 }
 
 /* Mouse-follow spotlight highlight for technical cards */
